@@ -94,10 +94,25 @@ Eso significa que el servidor recibio la solicitud y respondo exitosamente (200 
 ## Preguntas de reflexion
 
 1. ¿Que rol tiene app.py en todo esto?
+
+App.py es el archivo principal de la aplicación Flask. Su función es ejecutar el servidor, crear las rutas y conectar Python con las páginas HTML. También controla qué página se muestra en el navegador.
+
 2. ¿Por que necesitas el entorno virtual (.venv)?
+
+El entorno virtual (.venv) se necesita para aislar las librerías y dependencias del proyecto. Así, cada proyecto puede usar sus propias versiones de paquetes sin afectar otros proyectos de Python.
+
 3. ¿Donde se almacena el HTML que ves en el navegador?
+
+El HTML que se ve en el navegador se almacena normalmente en la carpeta templates del proyecto Flask. Flask toma esos archivos y los envía al navegador.
+
 4. Si cambias el HTML sin guardar, ¿se refleja el cambio en el navegador? ¿Por que?
+
+No, si cambias el HTML sin guardar, el cambio no se refleja en el navegador. Esto ocurre porque el servidor y el navegador solo leen la versión guardada del archivo.
+
 5. ¿Que es render_template y por que Flask lo usa?
+
+render_template es una función de Flask que sirve para cargar y mostrar archivos HTML desde la carpeta templates. Flask la usa para separar la lógica de Python del diseño visual de las páginas web.
+
 
 ## Entregable
 
