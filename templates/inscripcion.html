@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><strong>INSCRIPCION</strong></h1>
+
+
+    <br></br>
+
+<nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/informacion">Informacion</a></li>
+            <li><a href="/recursos">Recursos</a></li>
+            <li><a href="/tareas">Tareas</a></li>
+            <li><a href="/inscripcion">Inscripcion</a></li>
+        </ul>
+    </nav>
+
+    <h1>Inscripcion a la Clase</h1>
+
+    <!-- Mostrar mensaje de exito o error -->
+    {% if mensaje %}
+    <p style="color: green; font-weight: bold;">{{ mensaje }}</p>
+    {% endif %}
+
+    <!-- El formulario -->
+    <form method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        <br><br>
+
+        <label for="programa">Programa:</label>
+        <select name="programa" id="programa" required>
+            <option value="">-- Selecciona --</option>
+            <option value="Sistemas">Sistemas</option>
+            <option value="Ingenierias">Ingenierias</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Inscribirse</button>
+    </form>    
+</body>
+</html>

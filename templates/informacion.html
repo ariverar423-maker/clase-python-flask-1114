@@ -15,9 +15,19 @@
   <ul>
              <li><a href="/">Inicio</a></li>
             <li><a href="/recursos">Recursos</a></li>
-            <li><a href="/tareas">Tareas</a></li>   
+            <li><a href="/tareas">Tareas</a></li>
+            <li><a href="/inscripcion">Inscripcion</a></li>   
   </ul>
 </nav>
+
+<br></br>
+
+<h2>Objetivos de la clase</h2>
+<ul>
+    {% for objetivo in objetivos %}
+    <li>{{ objetivo }}</li>
+    {% endfor %}
+</ul>
 
 </body>
 </html>

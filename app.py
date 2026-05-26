@@ -1,5 +1,5 @@
 # Importamos Flask y una funcion que permite mostrar un HTML.
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 # Creamos la aplicacion principal.
@@ -50,15 +50,17 @@ def informacion():
         "aula": "215",
         "profesor": "Henry Ortegon",
         "horario": "Miercoles 16:45-18:10 | Jueves 12:30-14:20",
-        "objetivos": [
-            "Aprender Python basico",
-            "Entender Flask y aplicaciones web",
-            "Construir un portal web real"
-        ]
+    }
+
+    lista_objetivos = {
+        "Aprender Python basico",
+        "Entender Flask y aplicaciones web",
+        "Construir un portal web real"
+        
     }
 
 
-    return render_template("informacion.html", **datos)
+    return render_template("informacion.html", **datos, objetivos=lista_objetivos)
 
 
 
@@ -68,7 +70,8 @@ def recursos():
     enlaces = [
         {"nombre": "Documentacion Flask", "url": "https://flask.palletsprojects.com"},
         {"nombre": "Tutorial Python", "url": "https://docs.python.org"},
-        {"nombre": "GitHub del Profesor", "url": "https://github.com/hortegon"}
+        {"nombre": "GitHub del Profesor", "url": "https://github.com/hortegon"},
+        {"nombre": "MDN - HTML y CSS", "url": "https://developer.mozilla.org"},
     ]    
 
     return render_template("recursos.html", enlaces=enlaces)
@@ -86,6 +89,26 @@ def tareas():
 
     return render_template("tareas.html", 
     tareas=lista_tareas)
+
+
+
+@app.route("/inscripcion", methods=["GET", "POST"])
+def inscripcion():
+    mensaje = None
+    
+    if request.method == "POST":
+        # El usuario envio el formulario
+        nombre = request.form.get("nombre")
+        email = request.form.get("email")
+        programa = request.form.get("programa")
+        
+        # Validacion basica
+        if nombre and email and programa:
+            mensaje = f"Bienvenido {nombre}! Te hemos registrado."
+        else:
+            mensaje = "Por favor completa todos los campos."
+    
+    return render_template("inscripcion.html", mensaje=mensaje)    
 
 
 

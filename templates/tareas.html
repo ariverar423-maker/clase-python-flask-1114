@@ -12,11 +12,33 @@
     <br></br>
 <nav>
   <ul>
-             <li><a href="/">Inicio</a></li>
+             <li><a href="/"><h1>Inicio</h1></a></li>
             <li><a href="/informacion">Informacion</a></li>
             <li><a href="/recursos">Recursos</a></li> 
+            <li><a href="/inscripcion">Inscripcion</a></li>
   </ul>
 </nav>
+
+    <br></br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Titulo</th>
+            <th>Fecha entrega</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{ tarea.numero }}</td>
+            <td>{{ tarea.titulo }}</td>
+            <td>{{ tarea.fecha }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>    
 
     </body>
 </html>

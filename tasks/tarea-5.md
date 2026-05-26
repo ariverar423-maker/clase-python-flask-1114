@@ -159,8 +159,16 @@ if request.method == "POST":
 ## Preguntas de reflexion
 
 1. ¿Que diferencia hay entre `<input type="text">` y `<input type="email">`?
+
+Diferencia entre text y email: <input type="text"> es un campo general que acepta cualquier tipo de caracteres sin restricciones. En cambio, <input type="email"> valida automáticamente que el texto ingresado tenga la estructura de un correo electrónico (usuario@dominio.com) y optimiza el teclado en dispositivos móviles mostrando el símbolo @.
+
 2. ¿Que hace el atributo `required` en un campo?
+
+Función del atributo required: Convierte el campo en obligatorio. Si el usuario intenta enviar el formulario y este campo está vacío, el navegador bloquea el envío automáticamente y muestra una alerta indicando que debe rellenarlo.
+
 3. Si un usuario completa el formulario, ¿donde se guardan esos datos ahora?
+
+Dónde se guardan los datos: Actualmente se guardan de forma temporal en la memoria del servidor (en las variables del código de Python). Si la aplicación se apaga o se reinicia, los datos se pierden; para que sean permanentes, se requiere conectar el sistema a una base de datos.
 
 ## Entregable
 

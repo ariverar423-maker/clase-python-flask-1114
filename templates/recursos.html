@@ -14,9 +14,20 @@
   <ul>
              <li><a href="/">Inicio</a></li>
             <li><a href="/informacion">Informacion</a></li>
-            <li><a href="/tareas">Tareas</a></li>   
+            <li><a href="/tareas">Tareas</a></li> 
+            <li><a href="/inscripcion">Inscripcion</a></li>  
   </ul>
 </nav>
+
+<br></br>
+
+<ul>
+    {% for enlace in enlaces %}
+    <li>
+        <a href="{{ enlace.url }}">{{ enlace.nombre }}</a>
+    </li>
+    {% endfor %}
+</ul>
 
     </body>
 </html>

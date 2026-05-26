@@ -128,8 +128,16 @@ En HTML:
 ## Preguntas de reflexion
 
 1. Si tienes 50 tareas en la lista, ¿cuantas lineas de HTML necesitas escribir?
+
+Solo necesitas escribir 3 líneas de HTML dentro de tu plantilla. Gracias al bucle {% for %} de Jinja2, el código se escribe una sola vez. No importa si tienes 5, 50 o 10,000 tareas; el servidor repetirá de forma automática esas mismas líneas para cada elemento de la lista.
+
 2. ¿Que pasa si accedes a una propiedad que no existe, como `{{ tarea.profesor }}`?
+
+En Jinja2, si intentas acceder a una propiedad que no existe, no se genera un error que rompa la página (a diferencia de Python puro). En su lugar, Jinja2 lo maneja de forma silenciosa, devuelve un valor vacío (Undefined) y no muestra nada en la pantalla en ese espacio.
+
 3. ¿Como cambarias el bucle si quisieras mostrar solo las primeras 5 tareas?
+
+Para limitar el bucle a los primeros 5 elementos, debes usar el filtro slice de Python directamente sobre la lista en la etiqueta del for.
 
 ## Entregable
 
