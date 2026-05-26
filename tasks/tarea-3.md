@@ -205,8 +205,21 @@ def nombre_funcion():  # Que ocurre
 ## Preguntas de reflexion
 
 1. Si tienes 10 paginas diferentes, ¿cuantas funciones necesitas en app.py?
+
+Necesitas 10 funciones (cada una con su respectivo decorador @app.route). En Flask, cada página web única necesita su propia ruta y su propia función asociada para decirle al servidor qué archivo HTML debe renderizar o qué datos debe mostrar cuando el usuario visite esa URL.
+
 2. ¿Que pasa si cambias el nombre de una ruta pero no actualizas los links?
+
+Si cambias una ruta (por ejemplo, de @app.route('/contacto') a @app.route('/escribenos')) pero olvidas actualizar los enlaces (<a href="/contacto">), cuando un usuario haga clic en ese link el servidor no encontrará la dirección y arrojará un Error 404 (Page Not Found / Página no encontrada).
+
 3. ¿Por que es importante tener un menu consistente en todas las paginas?
+
+
+Es fundamental por dos razones principales:
+
+Experiencia de usuario (Usabilidad): Permite que los visitantes naveguen por todo tu sitio web de forma intuitiva sin perderse, sin importar en qué sección se encuentren.
+
+Mantenimiento del sitio: Si usas un sistema de plantillas (como Jinja2 con {% include %} o herencia de bloques), un menú consistente te permite cambiar un enlace una sola vez y asegurar que el cambio se aplique en todo el sitio web al mismo tiempo, evitando links rotos.
 
 ## Entregable
 
