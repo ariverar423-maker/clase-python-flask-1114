@@ -18,15 +18,25 @@ def inicio():
     aula = "215"
     descripcion = "Aprenderemos Python, Flask y construiremos un portal web real"
     
-  
+    nombre_10 = "Andres El steven"
+    edad_10 = 16
+
+
     return render_template(
         "index.html",
         profesor=nombre_profesor,
         email=email_profesor,
         horario=horario,
         aula=aula,
-        descripcion=descripcion
+        descripcion=descripcion,
+        nombre1=nombre_10,
+        edad1=edad_10,
+
+
+        # variable jinja
     )
+
+
 
 
 

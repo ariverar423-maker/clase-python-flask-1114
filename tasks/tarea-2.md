@@ -131,9 +131,22 @@ Edad: 25
 ## Preguntas de reflexion
 
 1. ¿Cual es la diferencia entre escribir datos en HTML vs guardarlos en variables Python?
+
+Diferencia entre HTML y variables Python: Escribir datos en HTML genera contenido estático que no cambia a menos que edites el código manualmente. Guardar los datos en variables de Python permite que el contenido sea dinámico, separando la información del diseño para que la página se pueda actualizar automáticamente desde una base de datos o lógica de programación.
+
+
 2. Si el profesor cambia mañana, ¿cuantos archivos necesitas editar con este enfoque?
+
+Archivos a editar si el profesor cambia: Solo se necesita editar 1 archivo (el archivo de Python donde está guardada la variable del profesor). El cambio se reflejará automáticamente en todas las páginas web que utilicen esa plantilla.
+
+
 3. ¿Que ventaja tiene usar `{{ }}` en lugar de escribir texto fijo?
+
+Ventajas de usar {{ }}: Funciona como un marcador de posición dinámico que permite reutilizar el mismo diseño HTML para diferentes datos. Facilita la automatización de páginas web y permite aplicar filtros rápidos (como convertir texto a mayúsculas) directamente en la plantilla sin alterar el código base.
+
 4. ¿Donde se ejecuta Jinja2: en la computadora del usuario o en el servidor?
+
+Dónde se ejecuta Jinja2: Se ejecuta exclusivamente en el servidor. El servidor procesa la plantilla de Jinja2, reemplaza los códigos {{ }} por texto real y finalmente le envía al navegador del usuario un archivo HTML puro y limpio.
 
 ## Entregable
 
