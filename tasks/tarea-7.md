@@ -305,8 +305,18 @@ if 'usuario_id' not in session:
 ## Preguntas de reflexion
 
 1. ¿Por que nunca debes guardar contraseñas en texto plano?
+
+Nunca se deben guardar en texto plano por seguridad extrema. Si un atacante logra acceder a la base de datos (por una filtración o vulnerabilidad), tendría inmediatamente las contraseñas de todos los usuarios. Además, como las personas suelen reutilizar contraseñas, el atacante podría hackear sus cuentas en otros sitios (correos, bancos, redes sociales). Las contraseñas siempre se deben guardar encriptadas usando funciones de hash (como bcrypt o werkzeug.security).
+
 2. ¿Que diferencia hay entre crear un Usuario y loguear?
+
+Crear un Usuario (Registro): Es una acción de escritura. Tomas los datos del usuario (nombre, contraseña encriptada) y los guardas por primera vez en la base de datos. Solo se hace una vez por cuenta.
+
+Loguear (Iniciar sesión): Es una acción de verificación y lectura. El usuario ingresa sus credenciales, el sistema busca si existen en la base de datos y compara las contraseñas. Si coinciden, se crea una sesión activa en el navegador (usando session de Flask) para recordar que ese usuario ya está dentro. Se hace cada vez que el usuario entra a la app.
+
 3. ¿Como protegeria la ruta `/estudiantes` para que solo profesor pueda verla?
+
+Se protege verificando si el usuario ha iniciado sesión y si su rol corresponde al de un profesor antes de renderizar la vista. Si no cumple, se le redirige al login o a una página de error.
 
 ## Entregable
 

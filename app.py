@@ -1,6 +1,7 @@
 # Importamos Flask y una funcion que permite mostrar un HTML.
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+
 
 
 # Creamos la aplicacion principal.
@@ -8,10 +9,96 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Configurar la base de datos
+
+app.secret_key = "clave-secreta-super-segura-1114"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portal.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+
+# tarea 7 
+from werkzeug.security import generate_password_hash, check_password_hash
+
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    usuario = db.Column(db.String(50), unique=True, nullable=False)
+    contraseña = db.Column(db.String(200), nullable=False)
+    rol = db.Column(db.String(20), nullable=False)  # "profesor" o "estudiante"
+
+    def establecer_contraseña(self, contraseña):
+        self.contraseña = generate_password_hash(contraseña)
+
+    def verificar_contraseña(self, contraseña):
+        return check_password_hash(self.contraseña, contraseña)
+
+    def __repr__(self):
+        return f'<Usuario {self.usuario}>'
+
+with app.app_context():
+    db.create_all()
+    
+    # Crear profesor
+    if not Usuario.query.filter_by(usuario="henry").first():
+        profesor = Usuario(usuario="henry", rol="profesor")
+        profesor.establecer_contraseña("password123")
+        db.session.add(profesor)
+        db.session.commit()
+        print("Profesor creado")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    mensaje = None
+    
+    if request.method == "POST":
+        usuario = request.form.get("usuario")
+        contraseña = request.form.get("contraseña")
+        
+        user = Usuario.query.filter_by(usuario=usuario).first()
+        
+        if user and user.verificar_contraseña(contraseña):
+            session['usuario_id'] = user.id
+            session['usuario_nombre'] = user.usuario
+            session['rol'] = user.rol
+            
+            if user.rol == "profesor":
+                return redirect(url_for("panel_profesor"))
+            else:
+                return redirect(url_for("panel_estudiante"))
+        else:
+            mensaje = "Usuario o contraseña incorrectos."
+    
+    return render_template("login.html", mensaje=mensaje)
+
+
+
+
+
+#paso 6 tara 7 
+
+
+@app.route("/panel-profesor")
+def panel_profesor():
+    # Verificar que esta logueado y es profesor
+    if 'usuario_id' not in session or session['rol'] != 'profesor':
+        return redirect(url_for("login"))
+    
+    return render_template("panel_profesor.html", usuario=session['usuario_nombre'])
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("inicio"))
+
+# paso 8 tarea 7 
+
+@app.route("/panel-estudiante")
+def panel_estudiante():
+    if 'usuario_id' not in session or session['rol'] != 'estudiante':
+        return redirect(url_for("login"))
+    
+    return render_template("panel_estudiante.html", usuario=session['usuario_nombre'])
 
 
 # Cuando alguien entra a la direccion principal del sitio, Flask ejecuta
@@ -133,8 +220,20 @@ def inscripcion():
     return render_template("inscripcion.html", mensaje=mensaje)
 
 
+
+
+
+
+    
+
+
+
 @app.route("/estudiantes")
 def estudiantes():
+# ponerr seguridad paginas importabtes paso 10 tarea 7    
+    if 'rol' not in session or session['rol'] != 'profesor':
+        return redirect(url_for("login"))
+    
     lista_estudiantes = Estudiante.query.all()
     return render_template("estudiantes.html", estudiantes=lista_estudiantes)
 
