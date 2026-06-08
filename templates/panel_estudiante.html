@@ -5,18 +5,32 @@
     <title>Panel Estudiante</title>
 </head>
 <body>
-    <h1>Panel del Estudiante</h1>
-    <p>Bienvenido, {{ usuario }}</p>
 
-    <nav>
-        <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/tareas">Ver Tareas</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Clase 1114</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/informacion">Informacion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recursos">Recursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tareas">Tareas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/inscripcion">Inscripcion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/estudiantes">Inscripcion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Inscripcion</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-<h2>Tus Tareas</h2>
+
+
+    <h1>Panel del Estudiante</h1>
+    <p>Bienvenido, {{ usuario }}</p>
+    <h2>Tus Tareas</h2>
 
 {% if tareas %}
 <table border="1">

@@ -1,7 +1,8 @@
 # Importamos Flask y una funcion que permite mostrar un HTML.
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-
+# Importación para convertir el texto del formulario en objeto fecha
+from datetime import datetime
 
 
 # Creamos la aplicacion principal.
@@ -142,12 +143,15 @@ def crear_tarea():
     if request.method == "POST":
         titulo = request.form.get("titulo")
         descripcion = request.form.get("descripcion")
-        fecha_entrega = request.form.get("fecha_entrega")
+        fecha_entrega_texto = request.form.get("fecha_entrega")
+        
+        # Conversión del texto del formulario a un objeto de tipo fecha real
+        fecha_entrega_objeto = datetime.strptime(fecha_entrega_texto, '%Y-%m-%d').date()
         
         nueva_tarea = Tarea(
             titulo=titulo,
             descripcion=descripcion,
-            fecha_entrega=fecha_entrega,
+            fecha_entrega=fecha_entrega_objeto,
             creada_por=session['usuario_id']
         )
         
@@ -178,7 +182,10 @@ def editar_tarea(id):
     if request.method == "POST":
         tarea.titulo = request.form.get("titulo")
         tarea.descripcion = request.form.get("descripcion")
-        tarea.fecha_entrega = request.form.get("fecha_entrega")
+        
+        fecha_entrega_texto = request.form.get("fecha_entrega")
+        # Conversión del texto a objeto fecha también al editar
+        tarea.fecha_entrega = datetime.strptime(fecha_entrega_texto, '%Y-%m-%d').date()
         
         db.session.commit()
         return redirect(url_for("mis_tareas"))
@@ -270,12 +277,8 @@ def recursos():
 
 @app.route("/tareas")
 def tareas():
-
-    lista_tareas = [
-        {"numero": 1, "titulo": "Portal base", "fecha": "25/05/2026"},
-        {"numero": 2, "titulo": "Datos dinamicos", "fecha": "30/05/2026"},
-        {"numero": 3, "titulo": "Multiple paginas", "fecha": "05/06/2026"}
-    ]    
+    # Cambiado para consultar todas las tareas reales de la base de datos
+    lista_tareas = Tarea.query.all()    
 
     return render_template("tareas.html", tareas=lista_tareas)
 

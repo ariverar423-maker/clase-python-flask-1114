@@ -2,25 +2,156 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Profesor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Profesor - Portal Clase 1114</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+    
+        .navbar {
+            background-color: #667eea !important; 
+        }
+
+  
+        .paginaprofesor-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+
+        .paginaprofesor-header {
+            border-bottom: 2px solid #f1f0fa;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .paginaprofesor-title {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .paginaprofesor-subtitle {
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+
+        .paginaprofesor-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+
+        .paginaprofesor-item {
+            background-color: #f1f0fa;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .paginaprofesor-item:hover {
+            transform: translateX(5px);
+            background-color: #e5e2f7;
+        }
+
+  
+        .paginaprofesor-link {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            padding: 15px 20px;
+            font-size: 1.05rem;
+        }
+
+  
+        .paginaprofesor-text {
+            color: #6c757d;
+            font-weight: 600;
+            display: block;
+            padding: 15px 20px;
+            font-size: 1.05rem;
+            cursor: not-allowed;
+        }
+
+
+        .paginaprofesor-logout {
+            background-color: #fff5f5;
+        }
+        
+        .paginaprofesor-logout a {
+            color:  #667eea;
+        }
+
+        .paginaprofesor-logout:hover {
+            background-color: #f8d7da;
+        }
+    </style>
 </head>
 <body>
-    <h1>Panel del Profesor</h1>
-    <p>Bienvenido, {{ usuario }}</p>
 
-    <nav>
-        <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/estudiantes">Ver Estudiantes</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">Clase 1114</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active fw-bold" href="#">Panel</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <h2>Acciones del Profesor</h2>
-    <ul>
-        <li>Crear tareas</li>
-        <li>Ver estudiantes inscritos</li>
-        <li>Poner calificaciones</li>
-    </ul>
+    <div class="container">
+        <div class="paginaprofesor-container">
+            
+            <div class="paginaprofesor-header">
+                <h1 class="paginaprofesor-title">Panel del Profesor</h1>
+                <p class="text-muted lead mb-0">Bienvenido, <strong>{{ usuario }}</strong> 👋</p>
+            </div>
+
+            <h2 class="paginaprofesor-subtitle">Acciones del Profesor</h2>
+
+            <nav>
+                <ul class="paginaprofesor-menu">
+                    <li class="paginaprofesor-item">
+                        <a class="paginaprofesor-link" href="/"> Inicio</a>
+                    </li>
+                    <li class="paginaprofesor-item">
+                        <a class="paginaprofesor-link" href="/estudiantes"> Ver Estudiantes</a>
+                    </li>
+                    <li class="paginaprofesor-item">
+                        <a class="paginaprofesor-link" href="{{ url_for('crear_tarea') }}"> Crear Tarea</a>
+                    </li>
+                    <li class="paginaprofesor-item">
+                        <a class="paginaprofesor-link" href="/mis-tareas">Mis tareas</a>
+
+                    <li class="paginaprofesor-item">
+                        <span class="paginaprofesor-text"> Poner calificaciones </span>
+                    </li>
+
+                    
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

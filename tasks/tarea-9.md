@@ -426,9 +426,28 @@ Esto evita repetir navbar y footer en cada pagina.
 ## Preguntas de reflexion
 
 1. ¿Que ventaja tiene usar Bootstrap vs escribir CSS manualmente?
+
+Ahorro de tiempo y velocidad: Permite estructurar páginas complejas en minutos usando clases ya creadas, en lugar de escribir cientos de líneas de CSS desde cero.
+
+Diseño responsivo automático: Su sistema de rejilla (Grid System) hace que la web se adapte de forma nativa a celulares, tablets y computadoras sin tener que configurar @media queries manuales.
+
+Componentes listos: Incluye menús de navegación (navbars), botones, tablas y formularios con diseños profesionales y animaciones integradas de forma inmediata.
+
 2. ¿Como ayuda template herencia a mantener el codigo limpio?
+
+Evita la duplicación de código (Principio DRY): No tienes que copiar y pegar la barra de navegación, el footer ni los enlaces a Bootstrap en cada archivo HTML individual.
+
+Mantenimiento en un solo lugar: Si necesitas añadir un nuevo enlace al menú o cambiar el color principal, solo modificas el archivo base.html y el cambio se aplica automáticamente en todo el portal web.
+
+Organización modular: Las páginas hijas solo contienen el código específico de su sección dentro de los bloques {% block content %}, dejando los archivos mucho más cortos, ordenados y legibles.
+
 3. ¿Que otras mejoras visuales podrias hacer?
 
+Tarjetas informativas (Cards): En lugar de mostrar datos o tareas solo en tablas, se pueden usar componentes .card de Bootstrap para crear tableros visuales más atractivos.
+
+Feedback visual con alertas: Implementar mensajes flotantes (Toast o clases .alert-success) que aparezcan y desaparezcan de forma fluida cuando el profesor cree o elimine una tarea con éxito.
+
+Efectos de transición suaves: Añadir transiciones en CSS (transition: all 0.3s ease) para que los botones y filas cambien de color con un efecto suave y moderno al pasar el cursor por encima (hover).
 ## Entregable
 
 Debes mostrar:

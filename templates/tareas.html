@@ -1,45 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-       <h1><strong><h1><strong>TAREAS</strong></h1></strong></h1> 
+{% extends "base.html" %}
 
-    <br></br>
-    <br></br>
-<nav>
-  <ul>
-             <li><a href="/"><h1>Inicio</h1></a></li>
-            <li><a href="/informacion">Informacion</a></li>
-            <li><a href="/recursos">Recursos</a></li> 
-            <li><a href="/inscripcion">Inscripcion</a></li>
-            <li><a href="/estudiantes">Estudiantes</a></li>
-  </ul>
-</nav>
+{% block title %}Tareas - Clase 1114{% endblock %}
 
-    <br></br>
+{% block content %}
+<style>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Numero</th>
-            <th>Titulo</th>
-            <th>Fecha entrega</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for tarea in tareas %}
-        <tr>
-            <td>{{ tarea.numero }}</td>
-            <td>{{ tarea.titulo }}</td>
-            <td>{{ tarea.fecha }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>    
+    .paginatareas-header {
+        background-color: #667eea !important;
+        color: white;
+    }
+</style>
 
-    </body>
-</html>
+<h1 class="mb-4 text-secondary">Tareas Entregables</h1>
+
+{% if tareas %}
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr class="paginatareas-header">
+                <th>Numero</th>
+                <th>Titulo</th>
+                <th>Fecha entrega</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarea in tareas %}
+            <tr>
+                <td>{{ tarea.id }}</td>
+                <td class="fw-semibold text-dark">{{ tarea.titulo }}</td>
+                <td>{{ tarea.fecha_entrega }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="alert alert-info">No hay tareas aun.</p>
+{% endif %}
+{% endblock %}
